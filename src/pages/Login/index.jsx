@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { LoginComponent } from "../../components/LoginComponent";
-import { SignUpComponent } from "../../components/SignUpComponent/Index";
+import { SignUpComponent } from "../../components/SignUpComponent";
 import { LoginContainer, LoginContent } from "../../styles/styles";
 import { AuthContext } from "../../context/AuthContext";
 import api from "../../services/api";
