@@ -25,6 +25,10 @@ export const LoginContent = styled.div`
   padding: 2rem 3rem;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  > button {
+    margin-top: 1rem;
+  }
 `;
 
 export const HomeContainer = styled.div`
