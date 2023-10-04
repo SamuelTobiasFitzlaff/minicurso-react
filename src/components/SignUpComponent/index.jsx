@@ -5,11 +5,17 @@ export function SignUpComponent() {
   return (
     <SignUpStyle>
       <h1>Cadastro</h1>
-      <TextField type="text" placeholder="Nome" />
-      <TextField type="email" placeholder="E-mail" />
-      <TextField type="password" placeholder="Senha" />
-      <TextField type="password" placeholder="Confirmar Senha" />
-      <Button variant="contained">Cadastrar</Button>
+      <TextField id="cadastroNome" type="text" placeholder="Nome" />
+      <TextField id="cadastroEmail" type="email" placeholder="E-mail" />
+      <TextField id="cadastroSenha" type="password" placeholder="Senha" />
+      <TextField
+        id="cadastroConfirmaSenha"
+        type="password"
+        placeholder="Confirmar Senha"
+      />
+      <Button id="cadastroBotao" variant="contained">
+        Cadastrar
+      </Button>
     </SignUpStyle>
   );
 }
