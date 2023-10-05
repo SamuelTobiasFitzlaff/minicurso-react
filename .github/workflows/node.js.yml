@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_API_URL: ${{ variables.VITE_API_URL }}
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
       - name: Setup 404 Page
         run: cp ./dist/index.html ./dist/404.html
       - name: Setup Pages
