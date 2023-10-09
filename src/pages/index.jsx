@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Card, CardContent, TextField } from "@mui/material";
 import { HomeContainer } from "../styles/styles";
 
 export function Home() {
   const [numero, setNumero] = useState(0);
   const [texto, setTexto] = useState("");
+
+  useEffect(() => {
+    console.log(numero);
+  }, [numero]);
+
+  useEffect(() => {
+    console.log("executou uma vez");
+  }, []);
+
   return (
     <HomeContainer>
       <h1>Home</h1>
