@@ -27,6 +27,7 @@ export function Users() {
           return (
             <Card
               key={item.id}
+              id={item.id}
               avatar={item.avatar}
               name={item.name}
               email={item.email}

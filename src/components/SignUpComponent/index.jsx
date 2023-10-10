@@ -62,6 +62,7 @@ export function SignUpComponent({ createdBy }) {
         <h1>Cadastro</h1>
         <TextField
           {...register("user", { required: "O nome é obrigatório" })}
+          id="cadastroNome"
           type="text"
           placeholder="Nome"
           error={!!errors.user}
@@ -69,6 +70,7 @@ export function SignUpComponent({ createdBy }) {
         />
         <TextField
           {...register("email", { required: "O email é obrigatório" })}
+          id="cadastroEmail"
           type="email"
           placeholder="E-mail"
           error={!!errors.email}
@@ -76,6 +78,7 @@ export function SignUpComponent({ createdBy }) {
         />
         <TextField
           {...register("password", { required: "A senha é obrigatória" })}
+          id="cadastroSenha"
           type="password"
           placeholder="Senha"
           error={!!errors.password}
@@ -85,12 +88,13 @@ export function SignUpComponent({ createdBy }) {
           {...register("confirmPassword", {
             required: "Por favor confirme a senha",
           })}
+          id="cadastroConfirmaSenha"
           type="password"
           placeholder="Confirmar Senha"
           error={!!errors.confirmPassword}
           helperText={errors?.confirmPassword?.message}
         />
-        <Button variant="contained" type="submit">
+        <Button id="cadastroBotao" variant="contained" type="submit">
           Cadastrar
         </Button>
       </SignUpStyle>

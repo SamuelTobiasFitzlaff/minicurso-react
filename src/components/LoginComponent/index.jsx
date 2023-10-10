@@ -55,6 +55,7 @@ export function LoginComponent() {
         <h1>Login</h1>
         <TextField
           {...register("email", { required: "O email é obrigatório" })}
+          id="loginEmail"
           type="email"
           placeholder="E-mail"
           error={!!errors.email}
@@ -62,13 +63,14 @@ export function LoginComponent() {
         />
         <TextField
           {...register("password", { required: "A senha é obrigatória" })}
+          id="loginSenha"
           type="password"
           placeholder="Senha"
           error={!!errors.password}
           helperText={errors?.password?.message}
         />
         {!!errors.password && <p>{errors.password.message}</p>}
-        <Button variant="contained" type="submit">
+        <Button id="loginBotao" variant="contained" type="submit">
           Entrar
         </Button>
       </LoginStyle>

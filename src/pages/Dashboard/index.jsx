@@ -66,6 +66,7 @@ export function Dashboard() {
           <Tab label="Cadastrar usuário" />
         </Tabs>
         <Button
+          id="logout"
           variant="outlined"
           startIcon={<LogoutIcon />}
           onClick={handleLogout}

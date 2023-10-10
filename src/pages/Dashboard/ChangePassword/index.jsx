@@ -72,6 +72,7 @@ export function ChangePassword() {
         <h1>Alterar senha</h1>
         <TextField
           {...register("password", { required: "A senha é obrigatória" })}
+          id="senhaAtual"
           type="password"
           placeholder="Senha atual"
           error={!!errors.password}
@@ -81,6 +82,7 @@ export function ChangePassword() {
           {...register("newPassword", {
             required: "A nova senha é obrigatória",
           })}
+          id="novaSenha"
           type="password"
           placeholder="Nova senha"
           error={!!errors.newPassword}
@@ -90,6 +92,7 @@ export function ChangePassword() {
           {...register("confirmNewPassword", {
             required: "Por favor confirme a senha",
           })}
+          id="confirmaSenha"
           type="password"
           placeholder="Confirmar Senha"
           error={!!errors.confirmNewPassword}

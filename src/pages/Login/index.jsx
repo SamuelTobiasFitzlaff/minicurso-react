@@ -23,6 +23,7 @@ export function Login() {
       <LoginContent>
         {isLogin ? <LoginComponent /> : <SignUpComponent />}
         <Button
+          id="mudarPagina"
           onClick={() => {
             setIsLogin((prevVal) => !prevVal);
           }}

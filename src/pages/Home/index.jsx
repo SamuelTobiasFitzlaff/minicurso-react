@@ -9,13 +9,14 @@ export function Home() {
   return (
     <HomeContainer>
       <h1>Home</h1>
-      <Button href="/login" variant="outlined">
+      <Button id="linkLogin" href="/login" variant="outlined">
         Login
       </Button>
       <Card>
         <CardContent>
           <h2>Você clicou {numero} vezes!</h2>
           <Button
+            id="soma"
             variant="contained"
             onClick={() => {
               setNumero((prevVal) => prevVal + 1);
@@ -29,6 +30,7 @@ export function Home() {
         <CardContent>
           <h2>Texto: {texto}</h2>
           <TextField
+            id="texto"
             type="text"
             onChange={(e) => {
               setTexto(e.target.value);
