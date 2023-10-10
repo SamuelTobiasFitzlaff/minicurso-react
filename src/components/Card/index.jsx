@@ -3,7 +3,7 @@ import { CardContainer, CardHeader } from "./styles";
 
 export function Card({ avatar, name, email, permission }) {
   return (
-    <CardContainer>
+    <CardContainer id={name}>
       <CardHeader>
         <img src={avatar} height={48} width={48} alt={name} /> <h2>{name}</h2>
       </CardHeader>
