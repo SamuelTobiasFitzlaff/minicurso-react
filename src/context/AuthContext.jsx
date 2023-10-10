@@ -2,7 +2,13 @@ import { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import api from "../services/api";
 
+import PropTypes from "prop-types";
+
 export const AuthContext = createContext({});
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
