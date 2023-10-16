@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
+import { AuthContext } from "../../context/AuthContext";
+
 import { TextField, Button } from "@mui/material";
 import { LoginStyle } from "./styles";
 
@@ -9,8 +14,14 @@ export function LoginComponent() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { SignIn } = useContext(AuthContext);
+
+  const onSubmit = async (data) => {
+    const response = await SignIn(data.email, data.password);
+    console.log(response);
+    if (response.status === 200) {
+      Navigate("/dashboard");
+    }
   };
 
   return (
