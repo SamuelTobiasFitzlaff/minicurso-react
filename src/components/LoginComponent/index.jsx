@@ -17,7 +17,7 @@ export function LoginComponent() {
   const { SignIn } = useContext(AuthContext);
 
   const onSubmit = async (data) => {
-    const response = await SignIn(data.email, data.password);
+    const response = await SignIn(data.email, data.senha);
     console.log(response);
     if (response.status === 200) {
       Navigate("/dashboard");

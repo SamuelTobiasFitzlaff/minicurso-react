@@ -32,9 +32,8 @@ export function AuthProvider({ children }) {
     authToken();
   }, []);
 
-  async function SignIn(email, password) {
-    console.log("values");
-    const values = { email: email, password: password };
+  async function SignIn(email, senha) {
+    const values = { email: email, password: senha };
     const response = await api.post("/login", values);
 
     if (response.status === 200) {
