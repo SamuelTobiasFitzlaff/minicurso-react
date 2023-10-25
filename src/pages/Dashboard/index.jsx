@@ -60,10 +60,10 @@ export function Dashboard() {
     <DashboardContainer>
       <TabsContainer>
         <Tabs value={step} onChange={handleChange}>
-          <Tab label="Home" />
-          <Tab label="Usuários" />
-          <Tab label="Alterar senha" />
-          <Tab label="Cadastrar usuário" />
+          <Tab label="Home" id="HomeTab" />
+          <Tab label="Usuários" id="UsuarioTab" />
+          <Tab label="Alterar senha" id="AlterarSenhaTab" />
+          <Tab label="Cadastrar usuário" id="CadastrarUsuarioTab" />
         </Tabs>
         <Button
           id="logout"
