@@ -22,23 +22,40 @@ export function LoginComponent() {
     const toastId = toast.loading(`Por favor, aguarde...`, {
       autoClose: false,
     });
-    const response = await SignIn(data.email, data.senha);
-    console.log(response);
-    if (response.status === 200) {
-      toast.update(toastId, {
-        render: `Olá, ${response.data.user}!`,
-        type: "success",
-        isLoading: false,
-        autoClose: 5000,
-      });
-      navigate("/dashboard");
-    } else {
-      toast.update(toastId, {
-        render: `Erro ao fazer login!`,
-        type: "error",
-        isLoading: false,
-        autoClose: 5000,
-      });
+    try {
+      const response = await SignIn(data.email, data.senha);
+      if (response.status === 200) {
+        toast.update(toastId, {
+          render: `Olá, ${response.data.user}!`,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        navigate("/dashboard");
+      } else {
+        toast.update(toastId, {
+          render: `Erro ao fazer login!`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.update(toastId, {
+          render: `${error.response.data.message}`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      } else {
+        toast.update(toastId, {
+          render: `Erro ao fazer login!`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
     }
   };
 
