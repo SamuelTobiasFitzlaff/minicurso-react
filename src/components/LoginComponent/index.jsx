@@ -21,7 +21,7 @@ export function LoginComponent() {
       const toastId = toast.loading(`Por favor, aguarde...`, {
         autoClose: false,
       });
-      const response = await SignIn(data.email, data.password);
+      const response = await SignIn(data.email, data.senha);
       if (response.status === 200) {
         toast.update(toastId, {
           render: `Olá, ${response.data.user}!`,
@@ -62,7 +62,7 @@ export function LoginComponent() {
           helperText={errors?.email?.message}
         />
         <TextField
-          {...register("password", { required: "A senha é obrigatória" })}
+          {...register("senha", { required: "A senha é obrigatória" })}
           id="loginSenha"
           type="password"
           placeholder="Senha"
