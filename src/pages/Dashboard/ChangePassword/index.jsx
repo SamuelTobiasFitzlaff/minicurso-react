@@ -98,7 +98,7 @@ export function ChangePassword() {
           error={!!errors.confirmNewPassword}
           helperText={errors?.confirmNewPassword?.message}
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" id="botaoAtualizarSenha">
           Atualizar senha
         </Button>
       </TabContent>
