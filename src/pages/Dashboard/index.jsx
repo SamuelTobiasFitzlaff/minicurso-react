@@ -1,7 +1,15 @@
 import { Button, Tab, Tabs } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { DashboardContainer, TabsContainer } from "../../styles/styles";
+import {
+  DashboardContainer,
+  TabContent,
+  TabsContainer,
+} from "../../styles/styles";
 import { useState } from "react";
+import { Home } from "./Home";
+import { Usuarios } from "./Usuarios";
+import { MudaSenha } from "./MudaSenha";
+import { SignUpComponent } from "../../components/SignUpComponent";
 
 export function Dashboard() {
   const [step, setStep] = useState(0);
@@ -13,15 +21,19 @@ export function Dashboard() {
   const RenderStep = () => {
     switch (step) {
       case 0:
-        return <h1>Home</h1>;
+        return <Home />;
       case 1:
-        return <h1>Usurarios</h1>;
+        return <Usuarios />;
       case 2:
-        return <h1>Mudar senha</h1>;
+        return <MudaSenha />;
       case 3:
-        return <h1>Cadastrar usuário</h1>;
+        return (
+          <TabContent>
+            <SignUpComponent />
+          </TabContent>
+        );
       default:
-        return <h1>Home</h1>;
+        return <Home />;
     }
   };
 
