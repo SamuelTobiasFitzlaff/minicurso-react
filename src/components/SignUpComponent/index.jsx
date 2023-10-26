@@ -14,7 +14,7 @@ export function SignUpComponent({ createdBy }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    if (data.password !== data.confirmPassword) {
+    if (data.senha !== data.confirmPassword) {
       toast("As senhas não conferem", { type: "error" });
       return;
     }
@@ -61,7 +61,7 @@ export function SignUpComponent({ createdBy }) {
       <SignUpStyle>
         <h1>Cadastro</h1>
         <TextField
-          {...register("user", { required: "O nome é obrigatório" })}
+          {...register("nome", { required: "O nome é obrigatório" })}
           id="cadastroNome"
           type="text"
           placeholder="Nome"
@@ -77,7 +77,7 @@ export function SignUpComponent({ createdBy }) {
           helperText={errors?.email?.message}
         />
         <TextField
-          {...register("password", { required: "A senha é obrigatória" })}
+          {...register("senha", { required: "A senha é obrigatória" })}
           id="cadastroSenha"
           type="password"
           placeholder="Senha"

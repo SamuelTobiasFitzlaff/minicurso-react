@@ -15,8 +15,8 @@ export function ChangePassword() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { password, newPassword, confirmNewPassword } = data;
-    if (newPassword !== confirmNewPassword) {
+    const { senha, novaSenha, confirmNewPassword } = data;
+    if (novaSenha !== confirmNewPassword) {
       toast("As senhas não conferem", { type: "error" });
       return;
     }
@@ -71,7 +71,7 @@ export function ChangePassword() {
       <TabContent>
         <h1>Alterar senha</h1>
         <TextField
-          {...register("password", { required: "A senha é obrigatória" })}
+          {...register("senha", { required: "A senha é obrigatória" })}
           id="senhaAtual"
           type="password"
           placeholder="Senha atual"
@@ -79,7 +79,7 @@ export function ChangePassword() {
           helperText={errors?.password?.message}
         />
         <TextField
-          {...register("newPassword", {
+          {...register("novaSenha", {
             required: "A nova senha é obrigatória",
           })}
           id="novaSenha"
@@ -89,7 +89,7 @@ export function ChangePassword() {
           helperText={errors?.newPassword?.message}
         />
         <TextField
-          {...register("confirmNewPassword", {
+          {...register("confirmarNovaSenha", {
             required: "Por favor confirme a senha",
           })}
           id="confirmaSenha"
