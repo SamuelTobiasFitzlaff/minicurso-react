@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const authToken = async () => {
-      if (cookies.token) {
+      if (cookies.token && cookies.token !== "undefined") {
         const body = { id: cookies.id };
         const config = {
           headers: { Authorization: `Bearer ${cookies.token}` },
