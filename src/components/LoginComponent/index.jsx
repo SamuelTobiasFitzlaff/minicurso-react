@@ -1,54 +1,60 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import { LoginStyle } from "./styles";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export function LoginComponent() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const navigate = useNavigate();
   const { SignIn } = useContext(AuthContext);
 
   const onSubmit = async (data) => {
+    const toastId = toast.loading(`Por favor, aguarde...`, {
+      autoClose: false,
+    });
     try {
-      const toastId = toast.loading(`Por favor, aguarde...`, {
-        autoClose: false,
-      });
       const response = await SignIn(data.email, data.senha);
       if (response.status === 200) {
         toast.update(toastId, {
-          render: `Olá, ${response.data.user}!`,
+          render: `Olá, ${response.data.user}`,
           type: "success",
           isLoading: false,
           autoClose: 5000,
         });
         navigate("/dashboard");
-      }
-      if (response.status === 404) {
+      } else {
         toast.update(toastId, {
-          render: `Usuário ou senha incorretos`,
+          render: `Erro ao fazer login`,
           type: "error",
           isLoading: false,
           autoClose: 5000,
         });
       }
     } catch (error) {
-      toast.update(toastId, {
-        render: `Erro ao fazer login`,
-        type: "error",
-        isLoading: false,
-        autoClose: 5000,
-      });
+      if (error.response.status === 401) {
+        toast.update(toastId, {
+          render: `Email ou senha incorretos`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      } else {
+        toast.update(toastId, {
+          render: `Erro ao fazer login`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
     }
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <LoginStyle>
@@ -66,10 +72,9 @@ export function LoginComponent() {
           id="loginSenha"
           type="password"
           placeholder="Senha"
-          error={!!errors.password}
-          helperText={errors?.password?.message}
+          error={!!errors.senha}
+          helperText={errors?.senha?.message}
         />
-        {!!errors.password && <p>{errors.password.message}</p>}
         <Button id="loginBotao" variant="contained" type="submit">
           Entrar
         </Button>

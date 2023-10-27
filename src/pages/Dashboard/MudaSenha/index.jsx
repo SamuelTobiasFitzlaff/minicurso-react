@@ -1,11 +1,11 @@
 import { Button, TextField } from "@mui/material";
+import { TabContent } from "../../../styles/styles";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 import api from "../../../services/api";
-import { TabContent } from "../../../styles/styles";
+import { useCookies } from "react-cookie";
 
-export function ChangePassword() {
+export function MudaSenha() {
   const [cookies] = useCookies();
   const {
     register,
@@ -15,24 +15,24 @@ export function ChangePassword() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { senha, novaSenha, confirmNewPassword } = data;
-    if (novaSenha !== confirmNewPassword) {
+    const { senha, novaSenha, confirmarNovaSenha } = data;
+    if (novaSenha !== confirmarNovaSenha) {
       toast("As senhas não conferem", { type: "error" });
       return;
     }
-    try {
-      const toastId = toast.loading(`Por favor, aguarde...`, {
-        autoClose: false,
-      });
 
+    const toastId = toast.loading(`Por favor, aguarde...`, {
+      autoClose: false,
+    });
+    try {
       const config = {
         headers: { Authorization: `Bearer ${cookies.token}` },
       };
 
       const newData = {
         id: cookies.id,
-        password: password,
-        newPassword: newPassword,
+        senha,
+        novaSenha,
       };
 
       const response = await api.post("/changePassword", newData, config);
@@ -44,25 +44,21 @@ export function ChangePassword() {
           autoClose: 5000,
         });
         reset();
-        return;
-      }
-      if (response.status === 409) {
+      } else {
         toast.update(toastId, {
-          render: response.data.message,
+          render: "Erro ao cadastrar",
           type: "error",
           isLoading: false,
           autoClose: 5000,
         });
-        return;
       }
+    } catch (error) {
       toast.update(toastId, {
         render: "Erro ao cadastrar",
         type: "error",
         isLoading: false,
         autoClose: 5000,
       });
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -98,7 +94,7 @@ export function ChangePassword() {
           error={!!errors.confirmNewPassword}
           helperText={errors?.confirmNewPassword?.message}
         />
-        <Button variant="contained" type="submit" id="atualizarSenha">
+        <Button variant="contained" type="submit">
           Atualizar senha
         </Button>
       </TabContent>

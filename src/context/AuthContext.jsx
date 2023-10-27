@@ -1,6 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import api from "../services/api";
+
+import PropTypes from "prop-types";
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export const AuthContext = createContext({});
 
@@ -9,26 +15,8 @@ export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(false);
   const [cookies, setCookie] = useCookies();
 
-  useEffect(() => {
-    const authToken = async () => {
-      if (cookies.token) {
-        const body = { id: cookies.id };
-        const config = {
-          headers: { Authorization: `Bearer ${cookies.token}` },
-        };
-        await api.post("/authToken", body, config).then((res) => {
-          setIsAuth(res.data.auth);
-        });
-      } else {
-        setIsAuth(false);
-      }
-    };
-    authToken();
-  }, []);
-
-  async function SignIn(email, password) {
-    const values = { email: email, password: password };
-
+  async function SignIn(email, senha) {
+    const values = { email: email, password: senha };
     const response = await api.post("/login", values);
 
     if (response.status === 200) {

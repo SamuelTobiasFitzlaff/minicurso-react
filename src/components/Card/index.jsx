@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { CardContainer, CardHeader } from "./styles";
-
-export function Card({ avatar, name, email, permission }) {
+export function Card({ nome, email, avatar }) {
   return (
-    <CardContainer id={name}>
+    <CardContainer>
       <CardHeader>
-        <img src={avatar} height={48} width={48} alt={name} /> <h2>{name}</h2>
+        <img src={avatar} height={48} width={48} alt={nome} /> <h2>{nome}</h2>
       </CardHeader>
-      <p>Email: {email}</p>
-      <p>Permissão: {permission}</p>
+      <p>E-mail: {email}</p>
     </CardContainer>
   );
 }
+Card.propTypes = {
+  nome: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};

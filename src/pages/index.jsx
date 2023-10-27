@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, TextField } from "@mui/material";
-import { HomeContainer } from "../../styles/styles";
+import { HomeContainer } from "../styles/styles";
 import { useState } from "react";
 
 export function Home() {
@@ -9,32 +9,31 @@ export function Home() {
   return (
     <HomeContainer>
       <h1>Home</h1>
-      <Button id="linkLogin" href="/login" variant="outlined">
+      <Button id="login" variant="outlined" href="/login">
         Login
       </Button>
+
       <Card>
         <CardContent>
           <h2>Você clicou {numero} vezes!</h2>
           <Button
-            id="soma"
             variant="contained"
-            onClick={() => {
-              setNumero((prevVal) => prevVal + 1);
-            }}
+            id="soma"
+            onClick={() => setNumero((prevNumero) => prevNumero + 1)}
           >
             Soma
           </Button>
         </CardContent>
       </Card>
+
       <Card>
         <CardContent>
           <h2>Texto: {texto}</h2>
           <TextField
             id="texto"
             type="text"
-            onChange={(e) => {
-              setTexto(e.target.value);
-            }}
+            placeholder="Digite algo..."
+            onChange={(event) => setTexto(event.target.value)}
           />
         </CardContent>
       </Card>

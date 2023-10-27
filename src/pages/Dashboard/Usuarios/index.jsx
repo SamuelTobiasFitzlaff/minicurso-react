@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { Card } from "../../../components/Card";
-import { TabContent, UsersContainer } from "../../../styles/styles";
-import api from "../../../services/api";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import api from "../../../services/api";
+import { TabContent, UsersContainer } from "../../../styles/styles";
+import { Card } from "../../../components/Card";
 
-export function Users() {
+export function Usuarios() {
   const [data, setData] = useState([]);
   const [cookies] = useCookies();
 
@@ -17,24 +17,24 @@ export function Users() {
       setData(response.data);
     };
     fetchData();
-  }, []);
+  }, [cookies.token]);
 
   return (
     <TabContent>
-      <h1>Usuários</h1>
+      <h1>Usuarios</h1>
       <UsersContainer>
         {data.map((item) => {
           return (
             <Card
               key={item.id}
               avatar={item.avatar}
-              name={item.name}
+              nome={item.nome}
               email={item.email}
-              permission={item.admin ? "Administrador" : "Usuário"}
             />
           );
         })}
       </UsersContainer>
+      ;
     </TabContent>
   );
 }

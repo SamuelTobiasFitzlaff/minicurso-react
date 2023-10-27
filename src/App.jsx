@@ -1,8 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes";
-import { AuthProvider } from "./context/AuthContext";
 import { GlobalStyle } from "./styles/styles";
-
+import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
