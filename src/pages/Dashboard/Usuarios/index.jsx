@@ -18,6 +18,7 @@ export function Usuarios() {
       setData(response.data);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

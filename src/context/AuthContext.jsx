@@ -30,6 +30,7 @@ export function AuthProvider({ children }) {
       }
     };
     authToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function SignIn(email, senha) {
