@@ -1,16 +1,64 @@
 import { Button, TextField } from "@mui/material";
 import { SignUpStyle } from "./styles";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import api from "../../services/api";
 
 export function SignUpComponent() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    if (data.senha !== data.confirmarSenha) {
+      toast("As senhas não conferem", { type: "error" });
+      return;
+    }
+    const toastId = toast.loading(`Por favor, aguarde...`, {
+      autoClose: false,
+    });
+
+    try {
+      const response = await api.post("/users", data);
+      if (response.status === 201) {
+        toast.update(toastId, {
+          render: response.data.message,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        reset();
+        return;
+      } else {
+        toast.update(toastId, {
+          render: "Erro ao cadastrar usuário",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        return;
+      }
+    } catch (error) {
+      if (error.response.status === 409) {
+        toast.update(toastId, {
+          render: error.response.data.message,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        return;
+      } else {
+        toast.update(toastId, {
+          render: "Erro ao cadastrar usuário",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
+    }
   };
 
   return (

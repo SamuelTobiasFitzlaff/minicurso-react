@@ -1,6 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import { LoginStyle } from "./styles";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function LoginComponent() {
   const {
@@ -8,9 +12,48 @@ export function LoginComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+  const { SignIn } = useContext(AuthContext);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const toastId = toast.loading(`Por favor, aguarde...`, {
+      autoClose: false,
+    });
+    try {
+      const response = await SignIn(data.email, data.senha);
+      if (response.status === 200) {
+        toast.update(toastId, {
+          render: `Olá, ${response.data.user}`,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        navigate("/dashboard");
+      } else {
+        toast.update(toastId, {
+          render: `Erro ao fazer login`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.update(toastId, {
+          render: `Email ou senha incorretos`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      } else {
+        toast.update(toastId, {
+          render: `Erro ao fazer login`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
