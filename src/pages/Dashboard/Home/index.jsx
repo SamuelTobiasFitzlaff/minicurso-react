@@ -1,9 +1,11 @@
+import { useCookies } from "react-cookie";
 import { TabContent } from "../../../styles/styles";
 
 export function Home() {
+  const [cookies] = useCookies();
   return (
     <TabContent>
-      <h1>Bem vindo usuário</h1>
+      <h1>Bem vindo {cookies.user}!</h1>
       <p>Utilize os botões acima para gerenciar a sua conta.</p>
     </TabContent>
   );
