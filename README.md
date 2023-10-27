@@ -1,5 +1,12 @@
 # minicurso-react
 
+## Rodando o projeto
+
+- npm install
+- npm run dev
+
+## link para a apresentação
+
 - [Apresentação de slides](https://bpluscombr-my.sharepoint.com/:p:/g/personal/samuel_fitzlaff_bplus_com_br/EV9B6HSWI2pOnUiQl0WJnRcBnGE9BO6KpH0YVRFmtjj79A?e=2498U2)
 - [Página demo](https://minicurso.fitzlaff.com/)
 
