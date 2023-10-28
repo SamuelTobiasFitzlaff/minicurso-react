@@ -28,7 +28,7 @@ export function Usuarios() {
             <Card
               key={item.id}
               avatar={item.avatar}
-              name={item.nome}
+              nome={item.name}
               email={item.email}
             />
           );
