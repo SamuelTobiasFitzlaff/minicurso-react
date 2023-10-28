@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
   const [cookies, setCookie] = useCookies();
 
   async function SignIn(email, senha) {
-    const values = { email: email, password: senha };
+    const values = { email: email, senha: senha };
     const response = await api.post("/login", values);
 
     if (response.status === 200) {
