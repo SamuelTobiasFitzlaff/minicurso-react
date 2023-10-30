@@ -34,7 +34,6 @@ export function Usuarios() {
           );
         })}
       </UsersContainer>
-      ;
     </TabContent>
   );
 }
