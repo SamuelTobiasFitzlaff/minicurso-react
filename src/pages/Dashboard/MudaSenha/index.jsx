@@ -94,7 +94,7 @@ export function MudaSenha() {
           error={!!errors.confirmNewPassword}
           helperText={errors?.confirmNewPassword?.message}
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" id="atualizarSenha">
           Atualizar senha
         </Button>
       </TabContent>
